@@ -13,8 +13,6 @@
             <h1>Bienvenue sur studyHack !</h1>
             <h3>Retrouve ici tous les cours magistraux et anales d'examens dont tu as besoin</h3>
             <br>
-            <a href="register.html" class="btn btn-primary btn-lg btn-block">Accéder au contenu</a>
-
             <br>
             <p>Derniers ajouts</p>
 
@@ -30,6 +28,7 @@
                         <div class="card-footer">
                             <small class="text-muted">Ajoutés il y a 8h</small>
                         </div>
+                        <a href="register.html" class="btn btn-primary btn-lg btn-block">Accéder au contenu</a>
                     </div>
                 </div>
                 <div class="col-12 col-lg-4 mt-4">
@@ -42,6 +41,7 @@
                         <div class="card-footer">
                             <small class="text-muted">Ajoutés il y a 15h</small>
                         </div>
+                        <a href="register.html" class="btn btn-primary btn-lg btn-block">Accéder au contenu</a>
                     </div>
                 </div>
                 <div class="col-12 col-lg-4 mt-4">
@@ -54,11 +54,12 @@
                         <div class="card-footer">
                             <small class="text-muted">Ajoutés il y a 4 jours</small>
                         </div>
+                        <a href="register.html" class="btn btn-primary btn-lg btn-block">Accéder au contenu</a>
                 </div>
             </div>
         </div>
         <br>
-        <a href="register.html" class="btn btn-primary btn-lg btn-block">Accéder au contenu</a>
+        
     </body>
 </html>
 
@@ -76,8 +77,6 @@
     height: 100vh;
     display: flex; flex-direction: column;
     justify-content: center; align-items: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
 }
 .card-group{
     color: black;
@@ -91,5 +90,10 @@
 .btn{
     padding: 15px;
     font-size: 22px;
+}
+@media screen and(max-device-width < 600px){
+    .col12{
+        height: 30%;
+    }
 }
 </style>
